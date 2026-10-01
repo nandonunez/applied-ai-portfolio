@@ -76,7 +76,7 @@ Preservar y dar acceso offline al repertorio musical tradicional gallego sin dep
 
 ---
 
-### 3. QuePraia — Axente Multimodal para Recomendación de Praias
+### 3. quepraia — Axente Multimodal para Recomendación de Praias
 
 **Repositorio:** `nandonunez/quepraia` (privado) | **Lenguaje:** Python | **Estado:** En desarrollo / validación (TFM Máster en IA)
 
@@ -105,7 +105,7 @@ Documentación técnica de proyectos de IA aplicada en sectores estratégicos. V
 |---|---|---|
 | Loaira (SERGAS Agent) | Sanidad pública | LangGraph, FHIR-lite, 9 tools, FastRTC, Qwen3 LoRA |
 | Galician Streaming Speech | Modelos de voz (STT/TTS) | FastConformer-Transducer, Matcha-TTS, Cotovia G2P, sherpa-onnx |
-| QuePraia | Recomendación costera / Visión | VLM/CNN edge, MeteoSIX, SGA, herramientas espaciales |
+| quepraia | Recomendación costera / Visión | VLM/CNN edge, MeteoSIX, SGA, herramientas espaciales |
 | Wind Forecasting | Energía eólica | Series temporales, ML, datos MeteoGalicia + SCADA |
 | Standalone PV LLP Sizing | Solar fotovoltaica | Optimización, simulación LLP, HPC CESGA |
 | Wildfire Risk | Medioambiente | Clasificación geoespacial, Self-Organizing Maps (SOM) |

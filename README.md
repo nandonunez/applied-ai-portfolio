@@ -45,7 +45,7 @@ Engineering framework for sizing off-grid photovoltaic and storage systems using
 
 ### Environmental & Geospatial Analytics
 
-#### [QuePraia — Multimodal Coastal Recommendation Agent](#quepraia)
+#### [quepraia — Multimodal Coastal Recommendation Agent](#quepraia)
 Context-aware multimodal conversational agent that delivers beach and coastal recommendations across Galicia.
 - **Multi-Source Fusion:** Integrates high-resolution marine and meteorological forecasts, tidal tables, coastal warnings, and bathing water quality indices.
 - **Edge Visual Validation:** Analyzes real-time conditions from public coastal webcams using lightweight computer vision deployed at the edge.

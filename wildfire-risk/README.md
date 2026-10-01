@@ -1,10 +1,7 @@
-
-
-
 # Wildfire Risk Prediction System (SOM-based)
 
+## System Architecture
 
-## 🏗 System Architecture
 ```mermaid
 graph LR
       A[User or Client Request] --> B[Automated GFS Data Download]
@@ -15,53 +12,47 @@ graph LR
       F --> G[API Delivery to Client Database]
 ```
 
-
 <p align="center" style="font-size: 0.9em; color: #888;">
    <em>Illustration: Training process of a Self-Organizing Map (SOM). Source: <a href="https://commons.wikimedia.org/wiki/File:Somtraining.svg">Wikimedia Commons</a></em>
 </p>
 
 ---
 
-## 🔍 Overview
+## Overview
 
-This system leverages global weather forecasts (GFS) and historical wildfire data to deliver operational wildfire risk predictions. Using a Self-Organizing Map (SOM), the pipeline classifies meteorological patterns and assigns risk indices based on historical fire occurrence and severity. The results are mapped to actionable risk categories and delivered via API for integration into client systems.
+This system leverages global numerical weather forecasts (NOAA GFS) and historical wildfire occurrence records to deliver operational wildfire risk indices. Using an unsupervised Self-Organizing Map (SOM), the pipeline classifies synoptic meteorological patterns and assigns risk metrics based on historical fire severity. Results are mapped to standardized risk bands and delivered via API.
  
-### **Key Features**
-- **Automated Data Pipeline:** Downloads and processes the latest GFS weather data for any region of interest.
-- **Flexible Configuration:** Easily adjust variables, levels, and region in the config file.
-- **Unsupervised Pattern Discovery:** SOM model identifies climate patterns most associated with large fire events.
-- **Risk Quantification:** Each SOM neuron is assigned a risk index, derived from the proportion of large fires (>500 ha) relative to all significant fires (>5 ha) historically mapped to that pattern.
-- **Actionable Output:** Risk is categorized (Very Low, Low, Medium, High) and delivered programmatically for operational use.
+### Key Features
+- **Automated Ingestion Pipeline:** Automated retrieval and preprocessing of GFS atmospheric grids for configured target regions.
+- **Configurable Domain Parameters:** Parameterized specification of atmospheric levels, meteorological variables, and bounding coordinates.
+- **Unsupervised Pattern Discovery:** 2D SOM topology identifies synoptic configurations statistically correlated with extreme wildfire episodes.
+- **Empirical Risk Quantification:** Neurons are weighted by the empirical ratio of severe fire events relative to total recorded fire incidents mapped to that weather pattern.
+- **Actionable Outputs:** Categorized indices (Very Low, Low, Medium, High) formatted for direct downstream API consumption.
 
-### **Workflow**
-1. **Data Acquisition:** Automated download of the latest GFS weather data (wind, temperature, humidity, etc.).
-2. **Preprocessing:** Cleans, formats, and extracts relevant meteorological variables.
-3. **Pattern Classification:** Applies a pre-trained SOM to classify the current forecast into a climate pattern.
-4. **Risk Index Assignment:** Assigns a risk index to the pattern using historical fire data and neuron assignment.
-5. **Risk Mapping & Delivery:** Maps the risk index to a category and delivers the result via API to client databases.
+### Pipeline Workflow
+1. **Data Acquisition:** Scheduled retrieval of GFS forecast runs (wind vectors, geopotential height, temperature, relative humidity).
+2. **Preprocessing:** Coordinate alignment, vertical level extraction, and multidimensional array normalization.
+3. **Pattern Classification:** Best Matching Unit (BMU) selection via the pre-trained SOM network.
+4. **Risk Quantification:** Statistical mapping of the identified BMU to historical fire incidence distributions.
+5. **Operational Delivery:** Serialized output pushed to client endpoints and monitoring databases.
  
 ---
 
+## Operational Impact & Context
 
-## 🎯 Impact
-
-* **Challenge:** High climate variability and data complexity make wildfire risk prediction and management difficult.
-* **Solution:** The system enables anticipation of high-risk zones and preparation of fire prediction and response services, supporting decision-making and resource allocation.
-* **Application:** Used by emergency and planning teams to prioritize critical areas and improve response to extreme events.
-
----
-
-## 🛠 Tech Stack
-
-* **Machine Learning:** scikit-learn, MiniSom
-* **Data Processing:** pandas, numpy, xarray
-* **Weather Data:** GFS (NOAA)
-* **Deployment:** Python scripts, Docker
-* **Formats:** GRIB, CSV, Parquet
+- **Context:** High climate variability and multi-variable atmospheric data make wildfire anticipation computationally demanding for emergency response units.
+- **Solution:** Dimensionality reduction via SOM translates complex 3D atmospheric states into interpretable, calibrated risk states.
+- **Application:** Operational decision support for civil protection teams, resource pre-positioning, and alert scheduling.
 
 ---
 
+## Technical Stack
 
+- **Machine Learning:** scikit-learn, MiniSom
+- **Scientific Computing & Data:** pandas, numpy, xarray
+- **Atmospheric Data:** NOAA GFS (Global Forecast System)
+- **Deployment & Formats:** Python, Docker, GRIB2, Parquet
 
+---
 
-**Note:** This repository is a technical demonstration and does not include sensitive data or proprietary code.
+**Note:** This documentation represents system architecture and design principles; proprietary model weights and confidential client data are excluded.

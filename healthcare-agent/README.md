@@ -1,64 +1,62 @@
+# Public Healthcare Voice Agent
 
-# Public Healthcare Agent 🏥🗣️
+Conversational voice assistant designed for public healthcare appointment management. "Sabela" provides automated scheduling, patient verification, and calendar integration with native bilingual support (Galician and Spanish).
 
-**Conversational AI voice assistant for public health services.** Sabela is a bilingual agent for appointment management, patient validation, and real-time scheduling, supporting natural language in Galician and Spanish. Easily adaptable for any public healthcare system.
+## Key Capabilities
 
-## 🚀 Key Features
-
-- **Bilingual & Native**: Responds primarily in Galician, adapting to Spanish when users prefer (configurable per patient profile)
-- **Real-time Appointment Management**: SQL-integrated scheduling with live availability checking (Mon-Fri), booking, listing, and cancellation
-- **Low Latency**: FastRTC streaming for real-time audio interactions
+- **Bilingual & Native**: Operates natively in Galician and Spanish with automated language adaptation based on patient preference.
+- **Real-Time Appointment Workflows**: Live availability queries (Mon-Fri), booking, status listing, and cancellation via SQLModel.
+- **Low-Latency Streaming**: Bidirectional voice streaming via FastRTC for natural conversational turn-taking.
 - **Modular AI Stack**:
-  - **LLM**: Groq (Llama/GPT-OSS) & OpenAI support
-  - **STT**: Groq Whisper, Azure Speech, local models (Moonshine)
-  - **TTS**: Azure Speech, RunPod (Orpheus), local models (Kokoro)
-- **Production-Ready**: LangGraph orchestration, SQLModel persistence, Docker & `uv` deployment
+  - **LLM Orchestration**: LangGraph state graph with Groq (Llama / open-weights) and OpenAI support
+  - **Speech-to-Text (STT)**: Groq Whisper, Azure Speech, Moonshine (local fallback)
+  - **Text-to-Speech (TTS)**: Azure Speech, RunPod (Orpheus), Kokoro (local fallback)
+- **Deployment & Persistence**: SQLModel ORM (SQLite / PostgreSQL), containerized via Docker and managed with `uv`.
 
-## 🏗️ Tech Stack
+## Architecture & Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| **Voice/AI** | FastRTC, LangGraph, Groq/OpenAI APIs |
-| **Speech** | Whisper (STT), Azure Speech/Kokoro (TTS) |
-| **Backend** | Python 3.11+, FastAPI |
-| **Database** | SQLite/PostgreSQL, SQLModel ORM |
-| **Infrastructure** | Docker, uv package manager |
-| **Infrastructure** | Healthcare standards (HL7, FHIR) |
+|---|---|
+| **Voice Streaming & Orchestration** | FastRTC, LangGraph, Groq / OpenAI |
+| **Speech Processing** | Whisper (STT), Azure Speech / Kokoro (TTS) |
+| **Backend & Persistence** | Python 3.11+, FastAPI, SQLModel ORM (SQLite / PostgreSQL) |
+| **Tooling & Infrastructure** | Docker, uv package manager |
+| **Healthcare Standards** | Adaptable to HL7 / FHIR scheduling endpoints |
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 sergas-agent/
 ├── src/realtime_phone_agents/
 │   ├── agent/           # LangGraph workflows & FastRTC integration
-│   ├── avatars/         # Sabela personality & prompts
-│   ├── infrastructure/  # DB models & connection layer
-│   └── services/        # Business logic (appointments, patients)
+│   ├── avatars/         # Agent persona & prompt configurations
+│   ├── infrastructure/  # DB models & persistence layer
+│   └── services/        # Business logic (appointments, patient verification)
 ├── data/                # SQLite persistence
-├── notebooks/           # Flow validation & testing
-├── scripts/             # DB seeding, utilities
-└── pyproject.toml       # UV-managed dependencies
+├── notebooks/           # Workflow validation & testing
+├── scripts/             # DB seeding, test utilities
+└── pyproject.toml       # uv-managed dependencies
 ```
 
-## 🚀 Quick Start
+## Setup & Execution
 
 ```bash
 # Install dependencies
 uv sync
 
-# Seed database with test data
+# Seed database with synthetic test data
 uv run scripts/seed_db.py
 
-# Validate agent workflows (notebooks)
+# Validate agent workflows via notebook
 jupyter notebook notebooks/
 
-# Launch voice UI
+# Launch voice interface
 uv run scripts/run_gradio_application.py
 ```
 
-## ⚙️ Requirements
+## System Requirements
 
 - Python 3.11+
 - `uv` package manager
-- Groq API key (minimum), optional: Azure/OpenAI keys
-- Docker (optional, for full deployment)
+- Groq API credentials (minimum); optional Azure / OpenAI keys
+- Docker (optional, for containerized execution)

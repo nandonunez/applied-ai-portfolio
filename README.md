@@ -1,52 +1,68 @@
+# Applied AI & Scientific Computing Portfolio
 
-# Applied AI & System Design Portfolio
+A curated collection of system architectures, predictive pipelines, and applied modeling projects across renewable energy, environmental risk, and voice systems.
 
-This portfolio showcases advanced projects in **Applied Artificial Intelligence**, **Data Engineering**, and **Physics-based Modeling**. All content is focused on system architecture, methodology, and business impact—no proprietary code or confidential data is included.
+All documentation emphasizes system design, mathematical methodology, and data pipelines. Proprietary code and client-specific data are excluded.
 
-## 🚩 Projects Overview
+---
 
+## Project Index
 
-### [Wildfire Risk Prediction (SOM-based)](./wildfire-risk) 🔥
-**Automated pipeline for wildfire risk mapping using global weather forecasts (GFS) and unsupervised learning (Self-Organizing Maps).**
-- Automated GFS data download and preprocessing
-- SOM-based climate pattern classification
-- Risk index assignment and API delivery
+### Voice & Conversational Systems
 
-### [Wind Energy Production Forecasting](./wind-forecasting) 🌬️
-**End-to-end ML pipeline for wind farm production forecasting.**
-- Integration of weather models and SCADA data
-- Feature engineering and ensemble ML models
-- Results delivered via API to client databases
+#### [Public Healthcare Voice Agent](./healthcare-agent)
+Real-time conversational voice assistant designed for public healthcare appointment management.
+- **Architecture:** Full-duplex streaming audio with sub-second latency using FastRTC and LangGraph graph orchestration.
+- **Pipeline:** Dual-layer STT/TTS integration (Groq Whisper, Azure Speech, local models) with relational database persistence (SQLModel).
+- **Scope:** Identity verification, calendar slot resolution, and native bilingual execution (Galician and Spanish).
 
-### [Standalone PV Sizing via LLP](./pv-llp-sizing) ☀️
-**Design framework for off-grid photovoltaic system sizing using Loss of Load Probability (LLP).**
-- Compute isoreliability curves from measured irradiation and real demand
-- Sensitivity to frequency, climate variability, and consumption mode
-- Cost-aware optimal region in low-storage/high-production quadrant
+---
 
-### [Autonomous LLM Meteorological Agent](./weather-agent) ☁️
-**LLM-powered agent for generating professional weather summaries and comparisons from raw meteorological data.**
-- Connects to external weather APIs
-- Data processing and prompt engineering
-- Delivers summaries and trend analyses via API
+### Renewable Energy & Physical Systems
 
-### [Public Healthcare Agent](./healthcare-agent) 🏥
-**Conversational AI agent for medical appointment management in public health systems.**
-- Bilingual (Galician/Spanish) voice interface
-- Real-time scheduling, patient validation, and SQL integration
-- Modular AI stack: LLM, STT, TTS, Docker-ready
+#### [Wind Energy Production Forecasting](./wind-forecasting)
+End-to-end predictive pipeline forecasting generation for wind farm assets.
+- **Data Integration:** Numerical weather prediction forecasts (GFS, ECMWF) coupled with high-frequency turbine SCADA telemetry.
+- **Modeling:** Feature engineering for wake effects and complex terrain; gradient-boosted ensembles (XGBoost, LightGBM) with temporal cross-validation.
+- **Delivery:** Automated scheduled inference with direct API integration into operational client databases.
 
-### [Urban Waste & Energy Analytics Dashboard (Power BI)](./urban-waste-energy-dashboard) 🗑️⚡
-**Power BI dashboard for visualizing and analyzing urban waste and energy recovery data.**
-- Integrates public datasets on waste flows, material recovery, and energy generation
-- Interactive dashboards with geospatial mapping and drill-down analytics
-- Enables data-driven decision making for urban sustainability
+#### [Standalone PV Sizing via Loss of Load Probability (LLP)](./pv-llp-sizing)
+Engineering framework for sizing off-grid photovoltaic and storage systems using analytical isoreliability curves.
+- **Methodology:** Multi-year global solar irradiation (MeteoGalicia) and empirical load profiles evaluated across multiple temporal resolutions.
+- **Optimization:** Cost-reliability Pareto frontier identification in the low-storage / high-generation quadrant.
+- **Impact:** Up to ~46% potential cost reduction compared to conventional rule-of-thumb oversizing.
 
+---
 
-## 🧭 About This Portfolio
+### Environmental & Geospatial Analytics
 
-- All diagrams and images are original or from open sources (e.g., Wikimedia Commons).
-- No proprietary code, data, or confidential information is included.
-- Each project README details the architecture, workflow, and impact.
+#### [Wildfire Risk Mapping (SOM-based)](./wildfire-risk)
+Operational wildfire risk forecasting pipeline based on atmospheric pattern clustering.
+- **Pipeline:** Automated ingestion and preprocessing of NOAA GFS gridded atmospheric forecasts.
+- **Methodology:** Unsupervised synoptic pattern classification via Self-Organizing Maps (SOM) calibrated against historical fire severity datasets.
+- **Output:** Programmatic risk indices delivered to civil protection and emergency planning workflows.
 
-**Contact:** [LinkedIn](https://www.linkedin.com/in/nandonunez) | **Specialization:** AI Architect & Physicist
+#### [Meteorological Report Generation Agent](./weather-agent)
+Automated pipeline translating raw multi-variable meteorological data into structured operational briefs.
+- **Pipeline:** API ingestion of numerical atmospheric variables, data validation, and contextual brief generation.
+- **Application:** Rapid situational awareness reports for civil protection and emergency dispatchers.
+
+#### [Urban Waste & Energy Recovery Dashboard](./urban-waste-energy-dashboard)
+Analytics dashboard monitoring material recovery and biogas/energy generation across treatment facilities.
+- **Integration:** Multi-source public datasets covering waste fraction flows, sorting efficiency, and thermal/biogas outputs.
+- **Analytics:** Geospatial facility mapping and interactive drill-down views in Power BI.
+
+---
+
+## Engineering Tenets
+
+- **Domain-Grounded:** Models are bounded by physical constraints, energy conservation principles, and empirical sensor data.
+- **Production-Oriented:** Designed for real-world constraints: audio latency budgets, concept drift, sampling frequency sensitivity, and automated delivery.
+- **Modern Tooling:** Built on standardized Python workflows (`uv`, `pyproject.toml`, Docker) and typed data interfaces.
+
+---
+
+## Contact
+
+- **Profile:** [Fernando Núñez Sánchez](https://github.com/nandonunez)
+- **LinkedIn:** [linkedin.com/in/nandonunez](https://www.linkedin.com/in/nandonunez)

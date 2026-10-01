@@ -1,24 +1,24 @@
+# Meteorological Report Generation Pipeline
 
-# Autonomous LLM Meteorological Agent
+## System Architecture
 
-## 🏗 System Architecture
 ```mermaid
 graph LR
-    subgraph User Interaction
-        A[User Query: Weather, Comparison, Trend]
+    subgraph Input
+        A[User Query / Scheduled Trigger]
     end
-    subgraph Data Source
-        B[Weather Data API]
+    subgraph Data Layer
+        B[Meteorological Data API]
     end
-    subgraph Processing
-        C[Data Processing & Formatting]
-        D[Prompt Engineering]
+    subgraph Processing Layer
+        C[Data Normalization & Formatting]
+        D[Structured Prompt Assembly]
     end
-    subgraph AI Component
-        E[OpenAI GPT: Text Generation]
+    subgraph Generation Layer
+        E[LLM Engine]
     end
-    subgraph Output
-        F[Professional Weather Summary]
+    subgraph Distribution
+        F[Operational Weather Summary]
         G[API Delivery to Client Database]
     end
     A --> B
@@ -29,53 +29,39 @@ graph LR
     F --> G
 ```
 
+## Overview
 
+This pipeline transforms raw numerical meteorological feeds into concise, operational situational briefs. It couples automated API data acquisition with structured language generation to provide technical and non-technical stakeholders with immediate operational summaries during dynamic weather conditions.
 
-## 🔍 Overview
+### Workflow
+1. **API Integration:** Automated retrieval of hourly meteorological variables (temperature profiles, precipitation accumulations, wind velocity, barometric pressure).
+2. **Data Transformation:** Cleans, validates, and computes statistical aggregates (ranges, anomalies, variance against climatological baselines).
+3. **Structured Context Assembly:** Compiles computed metrics into deterministic prompt schemas designed to eliminate hallucinations.
+4. **Narrative Generation:** Produces concise operational synopses, spatial comparisons, and multi-day trend analyses.
+5. **Programmatic Delivery:** Formatted output pushed via API to monitoring dashboards and downstream notification systems.
 
-This project implements an autonomous agent that generates professional, human-readable weather reports from raw meteorological data. It combines real-time weather API integration with generative AI (OpenAI GPT) to deliver concise, actionable summaries for operational and business use.
+## Operational Impact
 
-### **Workflow**
-1. **API Integration:** Securely connects to external weather data APIs to fetch hourly meteorological variables (temperature, precipitation, etc.).
-2. **Data Processing:** Cleans and formats weather data for prompt engineering and advanced queries.
-3. **Text Generation:** Uses OpenAI GPT to generate professional weather summaries, comparisons between locations or time periods, and trend analyses based on user queries.
-4. **Delivery:** Results are delivered to client databases via API for integration into dashboards or automated workflows.
+- **Context:** Raw atmospheric tables and multi-parameter numerical matrices require time-consuming manual interpretation by emergency dispatchers.
+- **Engineered Solution:** Automated translation of complex multi-sensor time series into clear, verifiable situational summaries.
+- **Application:** Emergency management teams and civil protection coordination centers during adverse meteorological events.
 
+## Technical Stack
 
+- **API & Networking:** requests, HTTP clients
+- **Data Engineering:** numpy, pandas, xarray
+- **Generation Engine:** OpenAI Python SDK
+- **Execution & Orchestration:** Python, Jupyter Notebooks
+- **Serialization:** JSON, CSV
 
+## Example Outputs
 
-## 🎯 Impact
+> **Daily Brief:** "Santiago de Compostela: Temperatures ranged from 4.2°C to 15.8°C with cumulative precipitation of 14.2 mm. Gusts peaked at 48 km/h from WNW during morning hours."
 
-* **Challenge:** Raw meteorological data is complex and not easily accessible for emergency teams and decision makers.
-* **Solution:** The agent translates complex atmospheric data into clear, actionable reports, facilitating communication and decision-making in critical situations.
-* **Application:** Used by civil protection and emergency management teams to obtain fast, understandable weather summaries during adverse events.
+> **Regional Comparison:** "Santiago de Compostela recorded 22% higher cumulative precipitation and an average temperature 3.1°C lower than Madrid over the 7-day observation window."
 
+> **Trend Analysis:** "30-day moving averages indicate a positive temperature drift of +1.4°C relative to seasonal normal, with precipitation distribution concentrated in two discrete frontal passages."
 
+---
 
-## 🛠 Tech Stack
-
-* **API Integration:** requests, dotenv
-* **Data Processing:** numpy, pandas, xarray
-* **Generative AI:** OpenAI GPT (via openai-python)
-* **Deployment:** Python scripts, Jupyter Notebooks
-* **Formats:** JSON, ENV
-
-
-
-## 📡 Results Delivery
-
-Weather summaries are delivered directly to client databases via secure API integration. No visual plots or images are stored in this repository; all outputs are programmatically accessible for operational use.
-
-
-
-## Example Output
-
-> "Today’s weather in Santiago de Compostela: Temperatures ranged from 4.2°C to 15.8°C with intermittent showers. Expect mild and variable conditions throughout the day."
-
-> "Comparison: Santiago de Compostela experienced higher rainfall and cooler temperatures than Madrid this week."
-
-> "Trend: Over the past month, Santiago de Compostela has seen a gradual increase in daily average temperature, with precipitation remaining stable."
-
-
-
-**Note:** This repository is for technical demonstration and does not include sensitive data or proprietary code.
+**Note:** This repository demonstrates architectural patterns and pipeline design; client-specific endpoints and access credentials are excluded.

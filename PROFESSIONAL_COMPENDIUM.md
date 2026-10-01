@@ -1,4 +1,4 @@
-# Fernando Núñez Sánchez — Compendio Profesional de Proyectos
+# Fernando Núnez Sánchez — Compendio Profesional de Proyectos
 
 > Documento generado para uso en procesos de selección y entrevistas técnicas.
 > Cubre todos los repositorios propios (públicos y privados) a fecha de abril 2026.

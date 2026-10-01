@@ -64,5 +64,5 @@ Analytics dashboard monitoring material recovery and biogas/energy generation ac
 
 ## Contact
 
-- **Profile:** [Fernando Núñez Sánchez](https://github.com/nandonunez)
+- **Profile:** [Fernando Núnez Sánchez](https://github.com/nandonunez)
 - **LinkedIn:** [linkedin.com/in/nandonunez](https://www.linkedin.com/in/nandonunez)

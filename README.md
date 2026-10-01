@@ -10,11 +10,20 @@ All documentation emphasizes system design, mathematical methodology, and data p
 
 ### Voice & Conversational Systems
 
-#### [Public Healthcare Voice Agent](./healthcare-agent)
-Real-time conversational voice assistant designed for public healthcare appointment management.
-- **Architecture:** Full-duplex streaming audio with sub-second latency using FastRTC and LangGraph graph orchestration.
-- **Pipeline:** Dual-layer STT/TTS integration (Groq Whisper, Azure Speech, local models) with relational database persistence (SQLModel).
-- **Scope:** Identity verification, calendar slot resolution, and native bilingual execution (Galician and Spanish).
+#### [Loaira — Primary-Care Healthcare Voice Agent](./healthcare-agent)
+Production-grade real-time conversational voice assistant designed for public healthcare appointment management.
+- **Architecture:** Full-duplex streaming audio pipeline with overlapped token-to-sentence generation and per-sentence TTS streaming.
+- **Tooling & Workflows:** FHIR-lite data model with 9 production tools (patient verification, NLP slot search, booking confirmation, listing/cancellation, home visits, callback requests, and PDF attendance certificates).
+- **Turn-Taking & Resilience:** Silero VAD + Smart-Turn v3 pause verification; conversational spoken fillers masking database/critic latencies; safe barge-in with synthetic state repair in LangGraph.
+- **Safety & Robustness:** Layered safety supervisor with 9 deterministic rules + LLM write critic with audit log; date resolution via a fine-tuned SLM (Qwen3-0.6B LoRA) trained with acoustic noise.
+- **Multi-Provider Cascade:** Resilient failover across Groq (gpt-oss-120b), Cerebras, NVIDIA NIM, and self-hosted models.
+
+#### [Galician Natively Streaming Speech Stack](./healthcare-agent#speech-infrastructure)
+Natively streaming, bidirectional speech microservices (STT + TTS) engineered for Galician, deployed entirely on CPU (ARM aarch64) at zero cloud cost.
+- **Streaming STT:** Frame-synchronous FastConformer-Transducer (ONNX int8 via sherpa-onnx) evaluated at 560 ms chunk size; outperforms offline reference models on spontaneous speech.
+- **Streaming TTS:** Non-autoregressive flow-matching Matcha-TTS with Vocos vocoder chunked by clause; delivers 527 ms Time-to-First-Audio (TTFA) on CPU.
+- **Phonemic Front-End:** Native aarch64 Cotovia G2P (SAMPA) preventing phonetic drift into Portuguese or Spanish phonology.
+- **End-to-End Latency:** 691 ms p50 perceived turn latency (STT final + TTS first audio) on a free-tier Oracle Ampere A1 VM.
 
 ---
 
@@ -35,6 +44,12 @@ Engineering framework for sizing off-grid photovoltaic and storage systems using
 ---
 
 ### Environmental & Geospatial Analytics
+
+#### [QuePraia — Multimodal Coastal Recommendation Agent](#quepraia)
+Context-aware multimodal conversational agent that delivers beach and coastal recommendations across Galicia.
+- **Multi-Source Fusion:** Integrates high-resolution marine and meteorological forecasts, tidal tables, coastal warnings, and bathing water quality indices.
+- **Edge Visual Validation:** Analyzes real-time conditions from public coastal webcams using lightweight computer vision deployed at the edge.
+- **Spatial Reasoning:** Employs deterministic spatial tools to ensure reliable distance, routing, and geographical grounding without hallucinations.
 
 #### [Wildfire Risk Mapping (SOM-based)](./wildfire-risk)
 Operational wildfire risk forecasting pipeline based on atmospheric pattern clustering.
